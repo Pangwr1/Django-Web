@@ -1,4 +1,4 @@
-"""USER URL Configuration
+"""MATERIAL URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -14,11 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from user import views
+from material import views
 
 urlpatterns = [
-    path('login/', views.home, name="login"),
-    path('login/<slug:kind>', views.login, name="login"),
-    path('logout/', views.logout, name="logout"),
-    path('register/<slug:kind>', views.register, name="register"),
+    path('material/', views.home, name="material"),
 ]
