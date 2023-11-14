@@ -13,6 +13,8 @@ from user.cbvs import CreateStudentView, CreateAdministratorView, UpdateAdminist
 def home(request):
     return render(request, "user/login_home.html")
 
+def register_home(request):
+    return render(request, "user/register_home.html")
 
 def login(request, kind):
     if kind not in ["student", "administrator"]:
