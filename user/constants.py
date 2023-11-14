@@ -1,0 +1,1 @@
+INVALID_KIND = "Invalid kind. Kind should be student or administrator."

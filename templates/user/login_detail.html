@@ -1,0 +1,22 @@
+{% extends "user/background.html" %}
+{% block welcome-message %}
+    <div class="welcome-message">欢迎</div>
+{% endblock %}
+{% block login_container %}
+    {% if kind == "student" %}
+        <div class="login-kind-title">我是学生</div>
+    {% else %}
+        <div class="login-kind-title">我是管理员</div>
+    {% endif %}
+    <div class = "form">
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="submit-button">
+                <input type="submit" value="登录"/>
+                <a href="">注册</a>
+            </div>
+        </form>
+        <div class="return-button"><a href="{% url 'login' %}">返回上一页</a></div>
+    </div>
+{% endblock %}
