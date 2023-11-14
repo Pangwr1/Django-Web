@@ -17,5 +17,5 @@ from django.urls import path
 from material import views
 
 urlpatterns = [
-    path('material/', views.home, name="material"),
+    path('<slug:kind>/', views.home, name="material"),
 ]
