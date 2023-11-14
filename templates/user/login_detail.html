@@ -1,6 +1,10 @@
 {% extends "user/background.html" %}
 {% block welcome-message %}
-    <div class="welcome-message">欢迎</div>
+    {% if from_url == "register" %}
+        <div class="welcome-message">注册成功，你的{% if kind == "student" %}学号{% else %}编号{% endif %}是{{ uid }}</div>
+    {% else %}
+        <div class="welcome-message">欢迎</div>
+    {% endif %}
 {% endblock %}
 {% block login_container %}
     {% if kind == "student" %}
@@ -14,7 +18,7 @@
             {{form.as_p}}
             <div class="submit-button">
                 <input type="submit" value="登录"/>
-                <a href="">注册</a>
+                <a href="{% url 'register' kind %}">注册</a>
             </div>
         </form>
         <div class="return-button"><a href="{% url 'login' %}">返回上一页</a></div>
