@@ -2,10 +2,10 @@ from multiprocessing import context
 from pydoc import cram
 from django.shortcuts import reverse, redirect
 from django.urls import is_valid_path
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from user.models import Student, Administrator
-from user.forms import StuRegisterForm, AdmRegisterForm
+from user.forms import StuRegisterForm, AdmRegisterForm, StuUpdateForm
 
 import random
 
@@ -94,3 +94,36 @@ class CreateAdministratorView(CreateView):
         context['kind'] = 'administrator'
 
         return context
+
+
+
+class UpdateStudentView(UpdateView):
+    model = Student
+    form_class = StuUpdateForm
+    template_name = "user/update.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateStudentView, self).get_context_data(**kwargs)
+        context.update(kwargs)
+        context["kind"] = "student"
+        return context
+
+    def get_success_url(self):
+        return reverse("material", kwargs={"kind": "student"})
+
+
+
+class UpdateAdministratorView(UpdateView):
+    model = Administrator
+    form_class = AdmRegisterForm
+    template_name = "user/update.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateAdministratorView, self).get_context_data(**kwargs)
+        context.update(kwargs)
+        context["kind"] = "administrator"
+        return context
+
+    def get_success_url(self):
+        return reverse("material", kwargs={"kind": "administrator"})
+

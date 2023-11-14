@@ -23,12 +23,14 @@
     </div>
 
     <div class="log-out">
-        <a href="{% url "logout" %}">退出登录</a>
+        <a href="{% url 'logout' %}">退出登录</a>
     </div>
 
     <div class="name-logo">
         <div class="user-name">
-            {{ info.name }}
+            <a href="{% url 'update' info.kind %}">
+                {{ info.name.0 }}
+            </a>
         </div>
     </div>
 </div>

@@ -1,11 +1,12 @@
 from audioop import reverse
+from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
 from user.models import Student, Administrator
 from user.constants import INVALID_KIND
 from user.forms import StuLoginForm, AdmLoginForm
-from user.cbvs import CreateStudentView, CreateAdministratorView
+from user.cbvs import CreateStudentView, CreateAdministratorView, UpdateAdministratorView, UpdateStudentView
 
 # Create your views here.
 
@@ -80,7 +81,7 @@ def logout(request):
         del request.session["user"]
     if request.session.get("id", ""):
         del request.session["id"]
-    return redirect(reverse("login"))
+    return redirect("login")
 
 
 def register(request, kind):
@@ -94,3 +95,22 @@ def register(request, kind):
         return func(request)
     else:
         return HttpResponse(INVALID_KIND)
+
+def update(request, kind):
+    func = None
+    if kind == 'student':
+        func = UpdateStudentView.as_view()
+    elif kind == 'administrator':
+        func = UpdateAdministratorView.as_view()
+    else:
+        return HttpResponse(INVALID_KIND)
+    
+    pk = request.session.get("id")
+    if pk:
+        context = {
+            "name": request.session.get("name", ""),
+            "kind": request.session.get("kind", ""),
+        }
+        return func(request, pk=pk, context=context)
+    
+    return redirect("login")
