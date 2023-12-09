@@ -25,6 +25,5 @@ In Linux.
 ```bash
 $ cd Django-Web
 $ source bin/activate
-$ cd SE
-$ python3 manager.py runserver
+$ python3 manage.py runserver
 ```
