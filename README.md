@@ -10,11 +10,12 @@ $ sudo apt install python3
 $ pip install virtualenv
 $ mkdir djproj && cd djproj
 $ virtualenv .
+$ source bin/activate
 $
 $ # clone repo and activate virtual env
 $ git clone url/of/Django-Web
 $ cd Django-Web
-$ source bin/activate
+
 $ pip install django
 ```
 
@@ -25,6 +26,5 @@ In Linux.
 ```bash
 $ cd Django-Web
 $ source bin/activate
-$ cd SE
-$ python3 manager.py runserver
+$ python3 manage.py runserver
 ```
