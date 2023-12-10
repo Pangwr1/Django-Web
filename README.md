@@ -11,12 +11,11 @@ $ pip install virtualenv
 $ mkdir djproj && cd djproj
 $ virtualenv .
 $ source bin/activate
+$ pip install django
 $
 $ # clone repo and activate virtual env
 $ git clone url/of/Django-Web
 $ cd Django-Web
-
-$ pip install django
 ```
 
 ## Run
